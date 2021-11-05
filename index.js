@@ -4,20 +4,17 @@ function newTask(title, description) {
     title: title,
     description: description,
     complete: false,
+    logState: function () {
+      console.log(
+        `${this.title} has${this.complete ? " " : " not "}been completed`
+      );
+    },
+    markCompleted: function () {
+      this.complete = true;
+    },
   };
 
   return task;
-}
-
-//function to print out task details
-function logTaskState(task) {
-  console.log(
-    `${task.title} has${task.complete ? " " : " not "}been completed`
-  );
-}
-
-function completeTask(task) {
-  task.complete = true;
 }
 
 //list of tasks and array to hold initial tasks
@@ -28,8 +25,7 @@ const task1 = newTask(
 const task2 = newTask("Do Laundry", "😨");
 const tasks = [task1, task2];
 
-logTaskState(task1);
-completeTask(task1);
-logTaskState(task1);
-
+task1.logState();
+task1.markCompleted();
+task1.logState();
 console.log(tasks);
